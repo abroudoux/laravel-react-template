@@ -1,31 +1,16 @@
 version: "3.9"
 
 services:
-    laravel-react-template:
-        container_name: laravel-react-template
-        image: abroudoux/laravel-react-template:1.0.0
-        build:
-            context: .
-            dockerfile: Dockerfile
-        ports:
-            - "8000:8000"
-        env_file:
-            - .env
-        depends_on:
-            - db
     db:
-        container_name: db
-        image: posgres:latest
+        container_name: db-laravel-react-template
+        image: postgres:16.1-alpine
         ports:
-            - "5432:5432"
+            - "32754:5432"
         env_file:
             - .env
         environment:
-            POSTGRES_DB: laravel-react-template
-            POSTGRES_USER: user
-            POSTGRES_PASSWORD: password
+            POSTGRES_DB: postgres
+            POSTGRES_USER: postgres
+            POSTGRES_PASSWORD: mysecretpassword
         volumes:
-            - pgdata:/var/lib/postgresql/data
-
-volumes:
-    pgdata: {}
+            - ./data:/var/lib/postgresql/data

@@ -1,1 +1,0 @@
-php artisan make:db-seed --classUsersSeeder
