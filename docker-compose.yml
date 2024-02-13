@@ -2,7 +2,7 @@ version: "3.9"
 
 services:
     db:
-        container_name: db-laravel-react-template
+        container_name: laravel-react-template-db
         image: postgres:16.1-alpine
         ports:
             - "32754:5432"
@@ -14,3 +14,16 @@ services:
             POSTGRES_PASSWORD: mysecretpassword
         volumes:
             - ./data:/var/lib/postgresql/data
+
+    app:
+        container_name: laravel-react-template-app
+        image: php:8.3-apache
+        ports:
+            - "8000:8000"
+        depends_on:
+            - db
+        volumes:
+            - laravel-react-template:/var/www/larve-react-template
+
+volumes:
+    laravel-react-template:
